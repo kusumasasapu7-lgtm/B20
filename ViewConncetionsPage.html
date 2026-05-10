@@ -15,7 +15,12 @@
       <li><a href="ProfilePage.html">Profile</a></li>
       <li><a href="FindMatchesPage.html">Find Matches</a></li>
       <li><a href="ViewConncetionsPage.html" class="active">Connections</a></li>
-      <li><a href="#" id="logoutBtn" class="nav-btn" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
+      <li><a href="index.html" id="logoutBtn" class="nav-btn"
+   onclick="localStorage.removeItem('mm_current_user')"
+   style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">
+  Logout
+</a>
+</li>
     </ul>
   </nav>
 
