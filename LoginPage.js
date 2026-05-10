@@ -1,6 +1,6 @@
-// login.js — Handle login authentication
+// login.js — Handle login authentication with Firebase
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const email = document.getElementById('loginEmail').value.trim();
@@ -15,21 +15,30 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     return;
   }
 
-  // Get all users from localStorage
-  const allUsers = JSON.parse(localStorage.getItem('mm_all_users') || '[]');
+  try {
+    // Login using Firebase Authentication
+    const result = await auth.signInWithEmailAndPassword(email, password);
+    const uid = result.user.uid;
 
-  // Find matching user
-  const user = allUsers.find(u => u.email === email && u.password === password);
+    // Get user details from Firestore
+    const userDoc = await db.collection('users').doc(uid).get();
 
-  if (!user) {
-    errorMsg.textContent = 'Invalid email or password. Please try again.';
+    if (!userDoc.exists) {
+      errorMsg.textContent = 'User data not found.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    const user = userDoc.data();
+
+    // Store current session in browser
+    localStorage.setItem('mm_current_user', JSON.stringify(user));
+
+    // Redirect to dashboard
+    window.location.href = 'Dashboard.html';
+
+  } catch (error) {
+    errorMsg.textContent = 'Invalid email or password.';
     errorMsg.style.display = 'block';
-    return;
   }
-
-  // Set current user session
-  localStorage.setItem('mm_current_user', JSON.stringify(user));
-
-  // Redirect to dashboard
-  window.location.href = 'Dashboard.html';
 });
