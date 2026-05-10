@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile — MindMatch</title>
-  <link rel="stylesheet" href="css/Style.css">
+  <title>Profile — MindSync</title>
+  <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
   <nav class="navbar">
-    <div class="logo">MindMatch</div>
+    <div class="logo">MindSync</div>
     <ul class="nav-links">
       <li><a href="Dashboard.html">Dashboard</a></li>
       <li><a href="ProfilePage.html" class="active">Profile</a></li>
       <li><a href="FindMatchesPage.html">Find Matches</a></li>
       <li><a href="ViewConncetionsPage.html">Connections</a></li>
-      <li><a href="#" id="logoutBtn" class="nav-btn" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
+      <li><a href="index.html" id="logoutBtn" class="nav-btn" onclick="localStorage.removeItem('mm_current_user')" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
     </ul>
   </nav>
 
@@ -33,7 +33,6 @@
             <span class="badge badge-pink" id="profileDeptBadge">—</span>
           </div>
         </div>
-        <a href="EditProfilePage.html" class="btn btn-outline" style="margin-left:auto;">✏️ Edit Profile</a>
       </div>
 
       <!-- BASIC INFO -->
@@ -126,7 +125,6 @@
       </div>
 
       <div style="display:flex; gap:1rem; margin-top:1rem;">
-        <a href="EditProfilePage.html" class="btn btn-primary">Edit Profile</a>
         <a href="FindMatchesPage.html" class="btn btn-secondary">Find Matches</a>
       </div>
 
@@ -134,9 +132,13 @@
   </div>
 
   <footer>
-    <p>MindMatch © 2024 | <span>Amrita School of Computing</span></p>
+    <p>MindSync © 2026 | <span>Amrita School of Computing</span></p>
   </footer>
 
-  <script src="jss/ProfilePage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="ProfilePage.js"></script>
 </body>
 </html>
