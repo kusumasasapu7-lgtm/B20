@@ -10,6 +10,13 @@ window.onload = function () {
   const connections = JSON.parse(localStorage.getItem('mm_connections') || '[]');
   const container = document.getElementById('connectionsList');
   const emptyState = document.getElementById('noConnections');
+    // Logout
+  document.getElementById('logoutBtn').addEventListener('click', function (e) {
+    e.preventDefault();
+    localStorage.removeItem('mm_current_user');
+    window.location.href = 'index.html';
+  });
+};
 
   if (connections.length === 0) {
     emptyState.style.display = 'block';
@@ -40,14 +47,6 @@ window.onload = function () {
       </div>
     `;
   }).join('');
-
-  // Logout
-  document.getElementById('logoutBtn').addEventListener('click', function (e) {
-    e.preventDefault();
-    localStorage.removeItem('mm_current_user');
-    window.location.href = 'index.html';
-  });
-};
 
 function capitalize(str) {
   if (!str) return '';
