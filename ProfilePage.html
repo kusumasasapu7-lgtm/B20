@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="ProfilePage.html" class="active">Profile</a></li>
+      <li><a href="FindMatchesPage.html">Find Matches</a></li>
+      <li><a href="ViewConncetionsPage.html">Connections</a></li>
+      <li><a href="#" id="logoutBtn" class="nav-btn" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="profile-wrapper">
+
+      <!-- PROFILE HEADER -->
+      <div class="profile-header">
+        <div class="profile-avatar" id="avatarInitial">?</div>
+        <div class="profile-info">
+          <h1 id="profileName">Loading...</h1>
+          <p id="profileEmailDisplay">—</p>
+          <div style="margin-top:0.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <span class="badge badge-purple" id="profileYearBadge">—</span>
+            <span class="badge badge-pink" id="profileDeptBadge">—</span>
+          </div>
+        </div>
+        <a href="EditProfilePage.html" class="btn btn-outline" style="margin-left:auto;">✏️ Edit Profile</a>
+      </div>
+
+      <!-- BASIC INFO -->
+      <div class="profile-section">
+        <h3>Basic Information</h3>
+        <div class="profile-row">
+          <div class="profile-field">
+            <div class="field-label">Department</div>
+            <div class="field-value" id="pDept">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Year</div>
+            <div class="field-value" id="pYear">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Career Goal</div>
+            <div class="field-value" id="pGoal">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUIZ ANSWERS -->
+      <div class="profile-section">
+        <h3>Your Quiz Answers</h3>
+        <div class="profile-row">
+          <div class="profile-field">
+            <div class="field-label">Free Time Interest</div>
+            <div class="field-value" id="pQ1">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Tech Area</div>
+            <div class="field-value" id="pQ2">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">5-Year Vision</div>
+            <div class="field-value" id="pQ4">—</div>
+          </div>
+        </div>
+        <div class="profile-row">
+          <div class="profile-field">
+            <div class="field-label">Study Time</div>
+            <div class="field-value" id="pQ5">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Study Style</div>
+            <div class="field-value" id="pQ6">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Group Role</div>
+            <div class="field-value" id="pQ10">—</div>
+          </div>
+        </div>
+        <div class="profile-row">
+          <div class="profile-field">
+            <div class="field-label">Looking For</div>
+            <div class="field-value" id="pQ9">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Project Interest</div>
+            <div class="field-value" id="pQ11">—</div>
+          </div>
+          <div class="profile-field">
+            <div class="field-label">Communication</div>
+            <div class="field-value" id="pQ12">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEXT ANSWERS -->
+      <div class="profile-section">
+        <h3>About You</h3>
+        <div style="display:grid; gap:1rem;">
+          <div>
+            <div class="field-label" style="margin-bottom:0.3rem;">Study Style (in your words)</div>
+            <div class="field-value" id="pQ7" style="color:var(--text2); font-size:0.9rem;">—</div>
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:0.3rem;">Ideal Project Partner</div>
+            <div class="field-value" id="pQ13" style="color:var(--text2); font-size:0.9rem;">—</div>
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:0.3rem;">Skill to Learn This Year</div>
+            <div class="field-value" id="pQ14" style="color:var(--accent);">—</div>
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:0.3rem;">Fun Fact</div>
+            <div class="field-value" id="pQ15" style="font-style:italic; color:var(--text2);">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:1rem; margin-top:1rem;">
+        <a href="EditProfilePage.html" class="btn btn-primary">Edit Profile</a>
+        <a href="FindMatchesPage.html" class="btn btn-secondary">Find Matches</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>MindMatch © 2024 | <span>Amrita School of Computing</span></p>
+  </footer>
+
+  <script src="jss/ProfilePage.js"></script>
+</body>
+</html>

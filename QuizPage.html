@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <div class="quiz-wrapper">
+    <div class="quiz-header">
+      <div class="hero-tag" style="display:inline-flex; margin-bottom:1rem; font-size:0.75rem;">Step 2 of 2 — The Quiz</div>
+      <h1>Tell Us About Yourself</h1>
+      <p>Answer honestly — this is how we find your best matches. No wrong answers!</p>
+      <div class="progress-bar" style="margin-top:1rem;">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-info">
+        <span id="progressText">0 of 15 answered</span>
+        <span id="progressPct">0%</span>
+      </div>
+    </div>
+
+    <div class="alert alert-error" id="errorMsg"></div>
+
+    <form id="quizForm">
+
+      <!-- SECTION 1: INTERESTS -->
+      <div class="quiz-section-title">🎯 Interests & Hobbies</div>
+
+      <div class="question-block">
+        <label>Q1. What do you enjoy doing in your free time?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q1" id="q1a" value="coding"><label for="q1a">Coding</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1b" value="design"><label for="q1b">Design</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1c" value="gaming"><label for="q1c">Gaming</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1d" value="reading"><label for="q1d">Reading</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1e" value="music"><label for="q1e">Music</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1f" value="sports"><label for="q1f">Sports</label></div>
+          <div class="option-chip"><input type="radio" name="q1" id="q1g" value="photography"><label for="q1g">Photography</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q2. Which tech area excites you most?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q2" id="q2a" value="web dev"><label for="q2a">Web Dev</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2b" value="app dev"><label for="q2b">App Dev</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2c" value="ai ml"><label for="q2c">AI & ML</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2d" value="cybersecurity"><label for="q2d">Cybersecurity</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2e" value="data science"><label for="q2e">Data Science</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2f" value="iot"><label for="q2f">IoT</label></div>
+          <div class="option-chip"><input type="radio" name="q2" id="q2g" value="none"><label for="q2g">None yet</label></div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: CAREER GOALS -->
+      <div class="quiz-section-title">🚀 Career Goals</div>
+
+      <div class="question-block">
+        <label>Q3. What is your primary career goal?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q3" id="q3a" value="placements"><label for="q3a">Placements</label></div>
+          <div class="option-chip"><input type="radio" name="q3" id="q3b" value="higher studies"><label for="q3b">Higher Studies</label></div>
+          <div class="option-chip"><input type="radio" name="q3" id="q3c" value="startup"><label for="q3c">Startup</label></div>
+          <div class="option-chip"><input type="radio" name="q3" id="q3d" value="government exams"><label for="q3d">Govt Exams</label></div>
+          <div class="option-chip"><input type="radio" name="q3" id="q3e" value="undecided"><label for="q3e">Undecided</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q4. Where do you see yourself in 5 years?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q4" id="q4a" value="product company"><label for="q4a">Product Company</label></div>
+          <div class="option-chip"><input type="radio" name="q4" id="q4b" value="service company"><label for="q4b">Service Company</label></div>
+          <div class="option-chip"><input type="radio" name="q4" id="q4c" value="own business"><label for="q4c">Own Business</label></div>
+          <div class="option-chip"><input type="radio" name="q4" id="q4d" value="research"><label for="q4d">Research</label></div>
+          <div class="option-chip"><input type="radio" name="q4" id="q4e" value="civil services"><label for="q4e">Civil Services</label></div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: STUDY HABITS -->
+      <div class="quiz-section-title">📚 Study Habits</div>
+
+      <div class="question-block">
+        <label>Q5. When do you prefer to study?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q5" id="q5a" value="early morning"><label for="q5a">Early Morning</label></div>
+          <div class="option-chip"><input type="radio" name="q5" id="q5b" value="afternoon"><label for="q5b">Afternoon</label></div>
+          <div class="option-chip"><input type="radio" name="q5" id="q5c" value="night"><label for="q5c">Night Owl</label></div>
+          <div class="option-chip"><input type="radio" name="q5" id="q5d" value="no fixed time"><label for="q5d">No Fixed Time</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q6. How do you study best?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q6" id="q6a" value="alone"><label for="q6a">Alone</label></div>
+          <div class="option-chip"><input type="radio" name="q6" id="q6b" value="one friend"><label for="q6b">With One Friend</label></div>
+          <div class="option-chip"><input type="radio" name="q6" id="q6c" value="group"><label for="q6c">In a Group</label></div>
+          <div class="option-chip"><input type="radio" name="q6" id="q6d" value="depends"><label for="q6d">Depends on Subject</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q7. Describe your study style in one line</label>
+        <input type="text" id="q7" placeholder="e.g. I make notes and revise daily before exams">
+      </div>
+
+      <div class="question-block">
+        <label>Q8. How many hours do you study per day?</label>
+        <input type="text" id="q8" placeholder="e.g. 2-3 hours on weekdays, more on weekends">
+      </div>
+
+      <!-- SECTION 4: PROJECT & COLLABORATION -->
+      <div class="quiz-section-title">🤝 Project & Collaboration</div>
+
+      <div class="question-block">
+        <label>Q9. What are you currently looking for?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q9" id="q9a" value="project partner"><label for="q9a">Project Partner</label></div>
+          <div class="option-chip"><input type="radio" name="q9" id="q9b" value="study buddy"><label for="q9b">Study Buddy</label></div>
+          <div class="option-chip"><input type="radio" name="q9" id="q9c" value="mentor"><label for="q9c">Mentor</label></div>
+          <div class="option-chip"><input type="radio" name="q9" id="q9d" value="friend"><label for="q9d">Just Friends</label></div>
+          <div class="option-chip"><input type="radio" name="q9" id="q9e" value="all"><label for="q9e">All of These</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q10. What role do you usually take in a group?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q10" id="q10a" value="leader"><label for="q10a">Leader</label></div>
+          <div class="option-chip"><input type="radio" name="q10" id="q10b" value="developer"><label for="q10b">Developer</label></div>
+          <div class="option-chip"><input type="radio" name="q10" id="q10c" value="designer"><label for="q10c">Designer</label></div>
+          <div class="option-chip"><input type="radio" name="q10" id="q10d" value="researcher"><label for="q10d">Researcher</label></div>
+          <div class="option-chip"><input type="radio" name="q10" id="q10e" value="supporter"><label for="q10e">Supporter</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q11. What kind of projects interest you?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q11" id="q11a" value="web apps"><label for="q11a">Web Apps</label></div>
+          <div class="option-chip"><input type="radio" name="q11" id="q11b" value="mobile apps"><label for="q11b">Mobile Apps</label></div>
+          <div class="option-chip"><input type="radio" name="q11" id="q11c" value="ai projects"><label for="q11c">AI Projects</label></div>
+          <div class="option-chip"><input type="radio" name="q11" id="q11d" value="research papers"><label for="q11d">Research Papers</label></div>
+          <div class="option-chip"><input type="radio" name="q11" id="q11e" value="hardware"><label for="q11e">Hardware</label></div>
+          <div class="option-chip"><input type="radio" name="q11" id="q11f" value="open source"><label for="q11f">Open Source</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q12. How do you prefer to communicate with your team?</label>
+        <div class="options-grid">
+          <div class="option-chip"><input type="radio" name="q12" id="q12a" value="whatsapp"><label for="q12a">WhatsApp</label></div>
+          <div class="option-chip"><input type="radio" name="q12" id="q12b" value="discord"><label for="q12b">Discord</label></div>
+          <div class="option-chip"><input type="radio" name="q12" id="q12c" value="in person"><label for="q12c">In Person</label></div>
+          <div class="option-chip"><input type="radio" name="q12" id="q12d" value="email"><label for="q12d">Email</label></div>
+          <div class="option-chip"><input type="radio" name="q12" id="q12e" value="any"><label for="q12e">Any Works</label></div>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <label>Q13. Describe your ideal project partner in one line</label>
+        <input type="text" id="q13" placeholder="e.g. Someone consistent, communicates well and takes initiative">
+      </div>
+
+      <div class="question-block">
+        <label>Q14. One skill you want to learn this year</label>
+        <input type="text" id="q14" placeholder="e.g. Machine Learning, React, Public Speaking">
+      </div>
+
+      <div class="question-block">
+        <label>Q15. One fun fact about yourself</label>
+        <input type="text" id="q15" placeholder="e.g. I can solve a Rubik's cube in under 2 minutes">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:1rem; padding:1rem;">
+        Submit & Go to Dashboard →
+      </button>
+
+    </form>
+  </div>
+
+  <footer>
+    <p>MindMatch © 2024 | <span>Amrita School of Computing</span></p>
+  </footer>
+
+  <script src="jss/quiz.js"></script>
+</body>
+</html>

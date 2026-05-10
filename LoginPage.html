@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="AboutPage.html">About</a></li>
+      <li><a href="ContactPage.html">Contact</a></li>
+      <li><a href="ResgisterPage.html">Register</a></li>
+      <li><a href="LoginPage.html" class="nav-btn active">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1>Welcome Back</h1>
+      <p class="sub">Login to see your matches and connections</p>
+
+      <div class="alert alert-error" id="errorMsg"></div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Your password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">
+          Login →
+        </button>
+
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="ResgisterPage.html">Register here</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="jss/LoginPage.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connections — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="ProfilePage.html">Profile</a></li>
+      <li><a href="FindMatchesPage.html">Find Matches</a></li>
+      <li><a href="ViewConncetionsPage.html" class="active">Connections</a></li>
+      <li><a href="#" id="logoutBtn" class="nav-btn" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="connections-wrapper">
+
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.25rem;">My Connections</h1>
+          <p style="color:var(--text2);">People you've connected with on MindMatch</p>
+        </div>
+        <a href="FindMatchesPage.html" class="btn btn-primary">+ Find More</a>
+      </div>
+
+      <!-- CONNECTION CARDS -->
+      <div id="connectionsList">
+        <!-- Filled by JS -->
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="noConnections" style="display:none;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🤝</div>
+        <h3>No connections yet</h3>
+        <p>Go to Find Matches and connect with like-minded students!</p>
+        <a href="FindMatchesPage.html" class="btn btn-primary" style="margin-top:1rem;">Find Matches</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>MindMatch © 2024 | <span>Amrita School of Computing</span></p>
+  </footer>
+
+  <script src="jss/Connection.js"></script>
+</body>
+</html>

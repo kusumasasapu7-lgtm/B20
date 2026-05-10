@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — MindSync</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="AboutPage.html" class="active">About</a></li>
+      <li><a href="ContactPage.html">Contact</a></li>
+      <li><a href="ResgisterPage.html">Register</a></li>
+      <li><a href="LoginPage.html" class="nav-btn">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="contact-wrapper">
+
+      <div style="margin-bottom:2rem;">
+        <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.25rem;">Contact Us</h1>
+        <p style="color:var(--text2);">Have a question or feedback? We'd love to hear from you.</p>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div class="contact-info-cards">
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <div>
+            <strong>Email</strong>
+            <p>support@mindsync.com</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🏫</div>
+          <div>
+            <strong>College</strong>
+            <p>Amrita School of Computing, Amritapuri</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:2rem;">
+        <h3 style="font-size:1rem; font-weight:700; margin-bottom:1.5rem;">Send a Message</h3>
+
+        <div class="alert alert-success" id="successMsg">✓ Message sent! We'll get back to you soon.</div>
+        <div class="alert alert-error" id="errorMsg"></div>
+
+        <form id="contactForm">
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Your Email</label>
+              <input type="email" id="contactEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <select id="contactSubject">
+              <option value="general">General Inquiry</option>
+              <option value="bug">Report a Bug</option>
+              <option value="feature">Feature Request</option>
+              <option value="account">Account Issue</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send Message →</button>
+
+        </form>
+      </div>
+
+      <!-- TEAM INFO -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; margin-top:1.5rem;">
+        <h3 style="font-size:0.8rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:1.25rem;">Built By</h3>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+          <div style="text-align:center;">
+            <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 0.75rem;font-family:'Syne',sans-serif;">T</div>
+            <p style="font-weight:600; font-size:0.9rem;">Thalari Shanmuktha</p>
+            <p style="font-size:0.8rem; color:var(--text2);">Project Planning & HTML</p>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent3));display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 0.75rem;font-family:'Syne',sans-serif;">H</div>
+            <p style="font-weight:600; font-size:0.9rem;">Hemeswari</p>
+            <p style="font-size:0.8rem; color:var(--text2);">Styling & Responsive UI</p>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 0.75rem;font-family:'Syne',sans-serif;">S</div>
+            <p style="font-weight:600; font-size:0.9rem;">Sasapu Kusuma</p>
+            <p style="font-size:0.8rem; color:var(--text2);">Algorithm & JS</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>MindSync © 2026| <span>Amrita School of Computing</span> |</p>
+  </footer>
+
+  <script src="jss/ContactPage.js"></script>
+</body>
+</html>

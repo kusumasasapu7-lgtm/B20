@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="AboutPage.html">About</a></li>
+      <li><a href="ContactPage.html">Contact</a></li>
+      <li><a href="ResgisterPage.html" class="active">Register</a></li>
+      <li><a href="LoginPage.html" class="nav-btn">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="hero-tag" style="display:inline-flex; margin-bottom:1rem; font-size:0.75rem;">Step 1 of 2</div>
+      <h1>Create Account</h1>
+      <p class="sub">Fill in your basic info — you'll answer questions next</p>
+
+      <div class="alert alert-error" id="errorMsg"></div>
+
+      <form id="registerForm">
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="e.g. Shanmuktha Thalari" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Create a password (min 6 chars)" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" required>
+              <option value="">Select</option>
+              <option value="AIE">AIE</option>
+              <option value="CSE">CSE</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="MECH">MECH</option>
+              <option value="CIVIL">CIVIL</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="year">Year</label>
+            <select id="year" required>
+              <option value="">Select</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">
+          Next: Take Quiz →
+        </button>
+
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="LoginPage.html">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="jss/ResgisterPage.js"></script>
+</body>
+</html>

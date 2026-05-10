@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — MindSync</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">MindSync</div>
+    <ul class="nav-links">
+      <li><a href="Dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="ProfilePage.html">Profile</a></li>
+      <li><a href="FindMatchesPage.html">Find Matches</a></li>
+      <li><a href="ViewConncetionsPage.html">Connections</a></li>
+      <li>
+        <a href="#" id="logoutBtn" class="nav-btn"
+           style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="dashboard-wrapper">
+
+      <!-- ── WELCOME BANNER ─────────────────────────── -->
+      <div class="welcome-banner">
+        <div>
+          <p style="font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.4rem;">Your Dashboard</p>
+          <h1>Welcome back, <span id="userName">—</span>!</h1>
+          <p>Your profile is ready. Explore your matches below.</p>
+        </div>
+        <a href="FindMatchesPage.html" class="btn btn-primary">🎯 Find Matches →</a>
+      </div>
+
+      <!-- ── STAT CARDS (6 cards, 3+3 on desktop) ─── -->
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem;">
+        <div class="stat-card">
+          <div class="label">🏛️ Department</div>
+          <div class="value" id="statDept">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">📅 Year</div>
+          <div class="value" id="statYear">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">🎯 Career Goal</div>
+          <div class="value" id="statGoal">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">🔍 Looking For</div>
+          <div class="value" id="statLooking">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">🤝 Connections</div>
+          <div class="value" id="statConnections" style="color:var(--accent3);">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">💡 Potential Matches</div>
+          <div class="value" id="statMatches" style="color:var(--accent);">—</div>
+        </div>
+      </div>
+
+      <!-- ── QUICK ACTIONS ──────────────────────────── -->
+      <div style="margin-bottom:2rem;">
+        <p style="font-size:0.75rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">Quick Actions</p>
+        <div class="quick-actions">
+          <a href="FindMatchesPage.html" class="btn btn-primary">🎯 Find Matches</a>
+          <a href="ProfilePage.html" class="btn btn-secondary">👤 View Profile</a>
+          <a href="ViewConncetionsPage.html" class="btn btn-secondary">🤝 My Connections</a>
+        </div>
+      </div>
+
+      <!-- ── MAIN GRID: Quiz Summary + Personality ──── -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+
+        <!-- Quiz Summary -->
+        <div class="card">
+          <p style="font-size:0.75rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">📋 Your Quiz Answers</p>
+          <div id="quizSummary" style="font-size:0.9rem; color:var(--text2); line-height:1.8;">
+            <p style="color:var(--text3)">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Fun Fact + Want to Learn -->
+        <div class="card">
+          <p style="font-size:0.75rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">✨ Personality Snapshot</p>
+
+          <div style="background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem 1.25rem; margin-bottom:1rem;">
+            <p style="font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Fun Fact About You</p>
+            <p id="funFact" style="font-size:0.95rem; color:var(--text); font-style:italic;">"Not filled yet"</p>
+          </div>
+
+          <div style="background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem 1.25rem;">
+            <p style="font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Skill You Want to Learn</p>
+            <p id="wantToLearn" style="font-size:1rem; font-weight:600; color:var(--accent);">—</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── SECOND GRID: Recent Connections + CTA ──── -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+
+        <!-- Recent Connections -->
+        <div class="card">
+          <p style="font-size:0.75rem; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:1rem;">🤝 Recent Connections</p>
+          <div id="recentConnections">
+            <p style="color:var(--text3); font-size:0.88rem;">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Match CTA -->
+        <div class="card" style="display:flex; flex-direction:column; justify-content:center; gap:1rem;
+          background:linear-gradient(135deg, rgba(124,106,255,0.08), rgba(255,106,158,0.04));">
+          <div>
+            <p style="font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.4rem;">Ready?</p>
+            <h3 style="font-size:1.1rem; margin-bottom:0.3rem;">Find students who match your vibe</h3>
+            <p style="font-size:0.85rem; color:var(--text2);">Matches are ranked by compatibility score based on your 15 quiz answers.</p>
+          </div>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="FindMatchesPage.html" class="btn btn-primary">🔍 Find Matches</a>
+            <a href="ProfilePage.html" class="btn btn-secondary">Edit Profile</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>MindSync © 2026 | <span>Amrita School of Computing</span></p>
+  </footer>
+
+  <script src="jss/Dashboard.js"></script>
+
+  <style>
+    /* Extra responsive tweak for 6-stat grid */
+    @media (max-width: 768px) {
+      .dashboard-wrapper > div:nth-child(2) { /* stat grid */
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      .dashboard-wrapper > div:nth-child(4),  /* quiz + personality */
+      .dashboard-wrapper > div:nth-child(5) { /* connections + CTA */
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Matches — MindMatch</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MindMatch</div>
+    <ul class="nav-links">
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="ProfilePage.html">Profile</a></li>
+      <li><a href="FindMatchesPage.html" class="active">Find Matches</a></li>
+      <li><a href="ViewConncetionsPage.html">Connections</a></li>
+      <li><a href="#" id="logoutBtn" class="nav-btn" style="background:transparent!important; color:var(--accent2)!important; border:1px solid var(--accent2)!important;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="matches-wrapper">
+
+      <div style="margin-bottom:2rem;">
+        <h1 style="font-size:2rem; font-weight:800; margin-bottom:0.25rem;">Find Your Matches</h1>
+        <p style="color:var(--text2);">Ranked by compatibility score based on your quiz answers</p>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="matches-filter">
+        <label>Filter:</label>
+        <select id="filterYear">
+          <option value="all">All Students</option>
+          <option value="junior">Juniors Only (below my year)</option>
+          <option value="senior">Seniors Only (above my year)</option>
+          <option value="same">Same Year</option>
+        </select>
+        <select id="filterGoal">
+          <option value="all">Any Goal</option>
+          <option value="placements">Placements</option>
+          <option value="higher studies">Higher Studies</option>
+          <option value="startup">Startup</option>
+          <option value="government exams">Govt Exams</option>
+        </select>
+        <button class="btn btn-outline" id="filterBtn" style="padding:0.4rem 1rem;">Apply</button>
+        <span id="matchCount" style="margin-left:auto; color:var(--text2); font-size:0.85rem;"></span>
+      </div>
+
+      <!-- MATCH CARDS -->
+      <div class="match-cards-grid" id="matchResults">
+        <!-- Filled by JS -->
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="noMatches" style="display:none;">
+        <h3>No matches found</h3>
+        <p>Try changing your filters, or invite more friends to join MindMatch!</p>
+        <a href="Dashboard.html" class="btn btn-primary">Back to Dashboard</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>MindMatch © 2024 | <span>Amrita School of Computing</span></p>
+  </footer>
+
+  <script src="jss/Matches.js"></script>
+</body>
+</html>
