@@ -1,13 +1,24 @@
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
 
-firebase.initializeApp(firebaseConfig);
+    apiKey: "AIzaSyB05QZtH6NwKnALc6nJjItIMvdFh7l2fJI",
 
-const auth = firebase.auth();
-const db = firebase.firestore();
+    authDomain: "mindsync-cc3c2.firebaseapp.com",
+
+    projectId: "mindsync-cc3c2",
+
+    storageBucket: "mindsync-cc3c2.firebasestorage.app",
+
+    messagingSenderId: "1010342912964",
+
+    appId: "1:1010342912964:web:cafa8698627cd008adba91",
+
+    measurementId: "G-6RCCNX1VRY"
+
+  };
+
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
