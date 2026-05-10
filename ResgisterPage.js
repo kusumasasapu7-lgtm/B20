@@ -1,6 +1,4 @@
-// register.js — Handle registration form
-
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const name = document.getElementById('name').value.trim();
@@ -10,7 +8,8 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
   const year = document.getElementById('year').value;
   const errorMsg = document.getElementById('errorMsg');
 
-  // Basic validation
+  errorMsg.style.display = 'none';
+
   if (!name || !email || !password || !department || !year) {
     errorMsg.textContent = 'Please fill in all fields.';
     errorMsg.style.display = 'block';
@@ -23,19 +22,23 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     return;
   }
 
-  // Check if email already exists
-  const allUsers = JSON.parse(localStorage.getItem('mm_all_users') || '[]');
-  const exists = allUsers.find(u => u.email === email);
-  if (exists) {
-    errorMsg.textContent = 'An account with this email already exists. Please login.';
+  try {
+    const result = await auth.createUserWithEmailAndPassword(email, password);
+    const uid = result.user.uid;
+
+    const basicInfo = {
+      uid,
+      name,
+      email,
+      department,
+      year
+    };
+
+    localStorage.setItem('mm_pending_register', JSON.stringify(basicInfo));
+    window.location.href = 'QuizPage.html';
+
+  } catch (error) {
+    errorMsg.textContent = error.message;
     errorMsg.style.display = 'block';
-    return;
   }
-
-  // Save basic info temporarily (quiz will complete it)
-  const basicInfo = { name, email, password, department, year };
-  localStorage.setItem('mm_pending_register', JSON.stringify(basicInfo));
-
-  // Redirect to quiz
-  window.location.href = 'QuizPage.html';
 });
