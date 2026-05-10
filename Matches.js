@@ -1,15 +1,11 @@
-
 // ===================== MATCHING ALGORITHM =====================
 
-// MCQ questions — these are compared directly (70% of score)
 const MCQ_QUESTIONS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q9', 'q10', 'q11', 'q12'];
-
-// Text questions — keyword comparison (30% of score)
 const TEXT_QUESTIONS = ['q7', 'q8', 'q13', 'q14', 'q15'];
 
-// Extract keywords from a text answer (remove short/common words)
 function extractKeywords(text) {
   if (!text) return [];
+
   const stopWords = ['i', 'a', 'an', 'the', 'is', 'are', 'was', 'and', 'or', 'to', 'of',
     'in', 'on', 'at', 'for', 'with', 'my', 'me', 'do', 'can', 'it', 'be',
     'that', 'this', 'but', 'as', 'by', 'from', 'they', 'we', 'you', 'he', 'she'];
@@ -21,12 +17,11 @@ function extractKeywords(text) {
     .filter(word => word.length > 2 && !stopWords.includes(word));
 }
 
-// Calculate similarity between two keyword arrays
 function keywordSimilarity(text1, text2) {
   const words1 = extractKeywords(text1);
   const words2 = extractKeywords(text2);
 
-  if (words1.length === 0 && words2.length === 0) return 0.5; // neutral if both empty
+  if (words1.length === 0 && words2.length === 0) return 0.5;
   if (words1.length === 0 || words2.length === 0) return 0;
 
   const common = words1.filter(w => words2.includes(w));
@@ -35,40 +30,39 @@ function keywordSimilarity(text1, text2) {
   return common.length / total;
 }
 
-// Main function: calculate match % between two users
 function calculateMatchScore(userA, userB) {
-
-  // ---- MCQ SCORE (70% weight) ----
   let mcqMatches = 0;
+
   MCQ_QUESTIONS.forEach(function(q) {
     if (userA[q] && userB[q] && userA[q] === userB[q]) {
       mcqMatches++;
     }
   });
-  const mcqScore = mcqMatches / MCQ_QUESTIONS.length; // 0 to 1
 
-  // ---- TEXT SCORE (30% weight) ----
+  const mcqScore = mcqMatches / MCQ_QUESTIONS.length;
+
   let textScoreTotal = 0;
+
   TEXT_QUESTIONS.forEach(function(q) {
     textScoreTotal += keywordSimilarity(userA[q], userB[q]);
   });
-  const textScore = textScoreTotal / TEXT_QUESTIONS.length; // 0 to 1
 
-  // ---- FINAL SCORE ----
+  const textScore = textScoreTotal / TEXT_QUESTIONS.length;
   const finalScore = (mcqScore * 0.70) + (textScore * 0.30);
 
-  return Math.round(finalScore * 100); // Return as percentage
+  return Math.round(finalScore * 100);
 }
 
-// Find common MCQ answers between two users (for tags display)
 function getCommonAnswers(userA, userB) {
   const common = [];
+
   MCQ_QUESTIONS.forEach(function(q) {
     if (userA[q] && userB[q] && userA[q] === userB[q]) {
       common.push(userA[q]);
     }
   });
-  return common.slice(0, 4); // Show max 4 tags
+
+  return common.slice(0, 4);
 }
 
 // ===================== DISPLAY =====================
@@ -90,17 +84,17 @@ function getScoreColor(score) {
   return 'var(--text3)';
 }
 
-function renderMatchCard(matchUser, score, commonAnswers, currentUser) {
+function renderMatchCard(matchUser, score, commonAnswers) {
   const initial = matchUser.name.charAt(0).toUpperCase();
   const scoreColor = getScoreColor(score);
-  const isConnected = isAlreadyConnected(matchUser.email);
+  const isConnected = isAlreadyConnected(matchUser.uid);
 
   const tagsHTML = commonAnswers.length > 0
     ? commonAnswers.map(t => `<span class="match-tag">${capitalize(t)}</span>`).join('')
     : '<span style="color:var(--text3); font-size:0.8rem;">No common answers</span>';
 
   return `
-    <div class="match-card" id="card-${matchUser.email.replace(/[^a-z]/gi, '')}">
+    <div class="match-card" id="card-${matchUser.uid}">
       <div class="match-card-header">
         <div class="match-avatar">${initial}</div>
         <div>
@@ -125,10 +119,10 @@ function renderMatchCard(matchUser, score, commonAnswers, currentUser) {
       <div class="match-actions">
         ${isConnected
           ? `<button class="btn btn-secondary" style="flex:1; justify-content:center;" disabled>✓ Connected</button>`
-          : `<button class="btn btn-primary" style="flex:1; justify-content:center;" onclick="connectUser('${matchUser.email}', '${matchUser.name}')">Connect</button>`
+          : `<button class="btn btn-primary" style="flex:1; justify-content:center;" onclick="connectUser('${matchUser.uid}')">Connect</button>`
         }
         <button class="btn btn-secondary" style="padding:0.6rem 1rem;" title="View details"
-          onclick="viewDetails('${matchUser.email}')">👤</button>
+          onclick="viewDetails('${matchUser.uid}')">👤</button>
       </div>
     </div>
   `;
@@ -136,19 +130,43 @@ function renderMatchCard(matchUser, score, commonAnswers, currentUser) {
 
 // ===================== CONNECT LOGIC =====================
 
-function isAlreadyConnected(email) {
+function isAlreadyConnected(uid) {
   const connections = JSON.parse(localStorage.getItem('mm_connections') || '[]');
-  return connections.some(c => c.email === email);
+  return connections.some(c => c.uid === uid);
 }
 
-function connectUser(email, name) {
-  const connections = JSON.parse(localStorage.getItem('mm_connections') || '[]');
+async function connectUser(uid) {
+  const currentUser = JSON.parse(localStorage.getItem('mm_current_user') || 'null');
 
-  const allUsers = JSON.parse(localStorage.getItem('mm_all_users') || '[]');
-  const targetUser = allUsers.find(u => u.email === email);
+  if (!currentUser) {
+    window.location.href = 'LoginPage.html';
+    return;
+  }
 
-  if (targetUser && !isAlreadyConnected(email)) {
+  const targetUser = allUsers.find(u => u.uid === uid);
+
+  if (!targetUser || isAlreadyConnected(uid)) return;
+
+  const connectionData = {
+    fromUid: currentUser.uid,
+    fromEmail: currentUser.email,
+    fromName: currentUser.name,
+    toUid: targetUser.uid,
+    toEmail: targetUser.email,
+    toName: targetUser.name,
+    department: targetUser.department,
+    year: targetUser.year,
+    q3: targetUser.q3 || '',
+    q9: targetUser.q9 || '',
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    await db.collection('connections').add(connectionData);
+
+    const connections = JSON.parse(localStorage.getItem('mm_connections') || '[]');
     connections.push({
+      uid: targetUser.uid,
       email: targetUser.email,
       name: targetUser.name,
       department: targetUser.department,
@@ -156,31 +174,36 @@ function connectUser(email, name) {
       q3: targetUser.q3,
       q9: targetUser.q9
     });
-    localStorage.setItem('mm_connections', JSON.stringify(connections));
-  }
 
-  // Update the button in UI
-  const cardId = 'card-' + email.replace(/[^a-z]/gi, '');
-  const card = document.getElementById(cardId);
-  if (card) {
-    const actionsDiv = card.querySelector('.match-actions');
-    actionsDiv.innerHTML = `
-      <button class="btn btn-secondary" style="flex:1; justify-content:center;" disabled>✓ Connected</button>
-      <button class="btn btn-secondary" style="padding:0.6rem 1rem;" onclick="viewDetails('${email}')">👤</button>
-    `;
+    localStorage.setItem('mm_connections', JSON.stringify(connections));
+
+    const card = document.getElementById('card-' + uid);
+
+    if (card) {
+      const actionsDiv = card.querySelector('.match-actions');
+      actionsDiv.innerHTML = `
+        <button class="btn btn-secondary" style="flex:1; justify-content:center;" disabled>✓ Connected</button>
+        <button class="btn btn-secondary" style="padding:0.6rem 1rem;" onclick="viewDetails('${uid}')">👤</button>
+      `;
+    }
+
+  } catch (error) {
+    alert('Error connecting user: ' + error.message);
   }
 }
 
-function viewDetails(email) {
-  const allUsers = JSON.parse(localStorage.getItem('mm_all_users') || '[]');
-  const u = allUsers.find(u => u.email === email);
+function viewDetails(uid) {
+  const u = allUsers.find(user => user.uid === uid);
+
   if (!u) return;
+
   alert(`📋 ${u.name}\n\nDept: ${u.department} | Year: ${u.year}\nGoal: ${capitalize(u.q3)}\nLooking for: ${capitalize(u.q9)}\nStudy time: ${capitalize(u.q5)}\nTech interest: ${capitalize(u.q2)}\nFun fact: ${u.q15 || 'Not shared'}`);
 }
 
 // ===================== FILTER & RENDER =====================
 
 let allMatches = [];
+let allUsers = [];
 
 function renderMatches(matches) {
   const container = document.getElementById('matchResults');
@@ -198,7 +221,7 @@ function renderMatches(matches) {
   countEl.textContent = `${matches.length} match${matches.length !== 1 ? 'es' : ''} found`;
 
   container.innerHTML = matches.map(function(m) {
-    return renderMatchCard(m.user, m.score, m.common, null);
+    return renderMatchCard(m.user, m.score, m.common);
   }).join('');
 }
 
@@ -209,7 +232,7 @@ function applyFilters() {
   const currentUser = JSON.parse(localStorage.getItem('mm_current_user'));
   const currentYear = parseInt(currentUser.year);
 
-  let filtered = allMatches.filter(function(m) {
+  const filtered = allMatches.filter(function(m) {
     const matchYear = parseInt(m.user.year);
 
     if (yearFilter === 'junior' && matchYear >= currentYear) return false;
@@ -226,35 +249,59 @@ function applyFilters() {
 
 // ===================== INIT =====================
 
-window.onload = function () {
-
+window.onload = async function () {
   const currentUser = JSON.parse(localStorage.getItem('mm_current_user') || 'null');
+
   if (!currentUser) {
     window.location.href = 'LoginPage.html';
     return;
   }
 
-  const allUsers = JSON.parse(localStorage.getItem('mm_all_users') || '[]');
+  try {
+    const usersSnapshot = await db.collection('users').get();
+    allUsers = usersSnapshot.docs.map(doc => doc.data());
 
-  // Calculate scores for all other users
-  allMatches = allUsers
-    .filter(u => u.email !== currentUser.email)
-    .map(function(u) {
-      const score = calculateMatchScore(currentUser, u);
-      const common = getCommonAnswers(currentUser, u);
-      return { user: u, score: score, common: common };
-    })
-    .sort((a, b) => b.score - a.score); // Sort highest first
+    const connectionsSnapshot = await db
+      .collection('connections')
+      .where('fromUid', '==', currentUser.uid)
+      .get();
 
-  renderMatches(allMatches);
+    const myConnections = connectionsSnapshot.docs.map(doc => {
+      const c = doc.data();
+      return {
+        uid: c.toUid,
+        email: c.toEmail,
+        name: c.toName,
+        department: c.department,
+        year: c.year,
+        q3: c.q3,
+        q9: c.q9
+      };
+    });
 
-  // Filter button
+    localStorage.setItem('mm_connections', JSON.stringify(myConnections));
+
+    allMatches = allUsers
+      .filter(u => u.uid !== currentUser.uid)
+      .map(function(u) {
+        const score = calculateMatchScore(currentUser, u);
+        const common = getCommonAnswers(currentUser, u);
+        return { user: u, score: score, common: common };
+      })
+      .sort((a, b) => b.score - a.score);
+
+    renderMatches(allMatches);
+
+  } catch (error) {
+    alert('Error loading matches: ' + error.message);
+  }
+
   document.getElementById('filterBtn').addEventListener('click', applyFilters);
 
-  // Logout
   document.getElementById('logoutBtn').addEventListener('click', function (e) {
     e.preventDefault();
     localStorage.removeItem('mm_current_user');
+    localStorage.removeItem('mm_connections');
     window.location.href = 'index.html';
   });
 };
